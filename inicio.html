@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAKO STUDIO | Impresión 3D Neon</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Lobster&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* *******************************************
+         * ESTILO DRAKO STUDIO / DARK & NEON
+         * *****************************************
+         */
+
+        /* Variables de Color (Oscuro y Neón) */
+        :root {
+            --color-primary-neon: #191CB0; /* Azul Eléctrico (para CTAs y Logo) */
+            --color-secondary-neon: #00FFC2; /* Verde Aqua Neón (para contraste) */
+            --color-dark-bg: #1A1A1A; /* Fondo muy Oscuro */
+            --color-card-bg: #2A2A2A; /* Fondo de tarjetas (un poco más claro que el body) */
+            --color-light-text: #F7F7F7; /* Texto claro */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--color-dark-bg);
+            color: var(--color-light-text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; 
+        }
+        
+        .main-content {
+            overflow-x: hidden; 
+        }
+
+        /* --- 1. Header y Navegación (CORREGIDO) --- */
+        .top-bar {
+            background-color: var(--color-secondary-neon);
+            color: var(--color-dark-bg);
+            text-align: center;
+            padding: 5px 0;
+            font-weight: 700;
+            font-size: 1em;
+        }
+        
+       .main-header {
+    /* ANTERIOR: display: flex; justify-content: space-between; */
+    
+    /* NUEVO: Usamos Grid para forzar el centrado del elemento del medio */
+    display: grid;
+    /* 1fr: Columna izquierda (expansible) | auto: Columna central (tamaño del contenido) | 1fr: Columna derecha (expansible) */
+    grid-template-columns: 1fr auto 1fr;
+    
+    align-items: center;
+    /* ... el resto de estilos se mantiene ... */
+}
+.main-header .header-icons:last-child {
+    justify-content: flex-end;
+}
+        /* Contenedor de iconos del Header */
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Estilo general de los enlaces/botones del header */
+        .header-icons a {
+            margin: 0 10px;
+            display: flex; 
+            transition: transform 0.3s;
+        }
+        .header-icons a:hover {
+            transform: scale(1.1);
+        }
+        
+        .header-icons img {
+            width: 110px; 
+            height: 110px;
+            object-fit: contain;
+        }
+        
+        /* Icono Central (Inicio) - Más grande */
+       .logo-principal {
+    /* Usamos justify-self para centrar el logo en su columna 'auto' */
+    justify-self: center; 
+    margin: 0 15px;
+}
+        .logo-principal img {
+            justify-self: center;
+            width: 150px; 
+            height: 150px;
+            object-fit: contain;
+        }
+
+        /* --- 2. SECCIÓN HERO (Banner Principal) (CORREGIDO) --- */
+.hero-section {
+    position: relative; 
+    padding: 0; /* Quitamos el padding para que el contenido absoluto tenga más espacio */
+    background-color: var(--color-dark-bg); 
+    color: var(--color-light-text); 
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden; 
+    height: 60vh; /* Es crucial para el centrado vertical */
+    
+    /* Nota: Se eliminó todo el `display: flex` de aquí */
+}
+        
+        /* Capa de Opacidad para el Contenido Principal */
+     /* Capa de Opacidad para el Contenido Principal */
+.hero-content {
+    position: absolute;
+    top: 50%; /* Mueve el bloque 50% hacia abajo */
+    left: 50%; /* Mueve el bloque 50% hacia la derecha */
+    transform: translate(-50%, -50%); /* Centra el bloque por su propio tamaño */
+    z-index: 10; 
+    background-color: rgba(26, 26, 26, 0.7); /* Opacidad un poco más alta */
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center; /* Asegura que el texto interno esté centrado */
+    max-width: 90%; 
+    width: 600px;
+    box-sizing: border-box;
+}
+        .hero-section h1 { 
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5em; 
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--color-secondary-neon); 
+            text-shadow: 0 0 10px var(--color-secondary-neon);
+        }
+        .slogan { 
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em; 
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .subtext { font-size: 1.1em; max-width: 700px; margin: 0 auto 30px; }
+
+        /* --- CARRUSEL DE FONDO EN HERO (CORRECCIÓN CLAVE) --- */
+       @keyframes move-hero {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(50%);
+    }
+}
+
+/* 🚨 NUEVO: Aseguramos que el carrusel de fondo cubra todo el espacio 
+   y se posicione de forma absoluta para no interferir con el contenido. */
+.hero-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-track {
+    display: flex;
+    width: 200%; 
+    height: 100%; /* La pista ocupa el 100% de la altura del carrusel */
+    animation: move-hero 50s linear infinite; 
+    transform: translateX(-50%); 
+}
+
+.hero-slide {
+    min-width: calc(100% / 7); 
+    height: 100%; /* Cada slide ocupa el 100% de la altura de la pista */
+}
+ 
+/* 🔑 CLAVE: La imagen debe cubrir su slide, sin posicionamiento absoluto */
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+        
+        /* Fin de Carrusel Hero */
+
+        /* Botones Principales (CTA) */
+        .cta-button {
+            background: var(--color-primary-neon);
+            color: var(--color-dark-bg);
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px; 
+            font-size: 1.1em;
+            font-weight: 900;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--color-primary-neon);
+        }
+        .cta-button:hover {
+            background: #4648c6;
+            transform: scale(1.03);
+            box-shadow: 0 0 20px #4648c6;
+        }
+
+        /* --- 3. SECCIÓN PRODUCTOS DESTACADOS (GALERÍA INMERSIVA) --- */
+        .featured-products {
+            padding: 50px 0; 
+            text-align: center;
+        }
+        .featured-products h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: var(--color-secondary-neon);
+        }
+        
+        /* Contenedor del Carrusel (Viewport) */
+        .product-container { 
+            overflow: hidden;
+            width: 100%;
+            padding: 0;
+        }
+        
+        /* La pista que contiene todos los productos y se mueve */
+        .carousel-track {
+            display: flex;
+            /* ANCHO TOTAL DE LA PISTA: 10 tarjetas x 700px */
+            width: calc(700px * 10); 
+            gap: 0; 
+            animation: move-products 45s linear infinite; 
+            white-space: nowrap;
+        }
+        
+        /* Detener la animación al pasar el mouse */
+        .product-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        /* Definición de la Animación de Movimiento */
+        @keyframes move-products {
+            from {
+                transform: translateX(0); 
+            }
+            to {
+                /* MOVIMIENTO: 5 slides x 700px */
+                transform: translateX(calc(-700px * 5)); 
+            }
+        }
+
+        /* Tarjeta de producto: ENFOQUE EN LA IMAGEN */
+        .product-card {
+            background-color: var(--color-card-bg); 
+            padding: 0; 
+            border: none; 
+            border-radius: 0; 
+            box-shadow: none; 
+            
+            /* TAMAÑO A 700px x 700px */
+            flex: 0 0 700px; 
+            width: 700px; 
+            height: 700px;  
+            
+            text-align: center;
+            transition: opacity 0.2s;
+            white-space: normal;
+            cursor: pointer; 
+        }
+        .product-card:hover {
+            transform: none;
+            opacity: 0.85;
+            border: none;
+        }
+        
+        /* Ocultar todos los elementos de texto e input */
+        .product-card h3, 
+        .product-card .price, 
+        .product-card input, 
+        .product-card label {
+            display: none !important;
+        }
+
+        .product-image {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            border-radius: 0;
+            margin: 0;
+            border: none;
+        }
+        
+        .checkout-button {
+            background: var(--color-secondary-neon); 
+            color: var(--color-dark-bg);
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 900;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            margin-top: 50px;
+            box-shadow: 0 0 15px var(--color-secondary-neon);
+        }
+        .checkout-button:hover {
+            background: #33ffdb;
+            transform: scale(1.03);
+            box-shadow: 0 0 20px #33ffdb;
+        }
+
+        /* --- 4. Pie de Página (CORREGIDO - Íconos) --- */
+        .main-footer {
+            background-color: var(--color-dark-bg); 
+            color: var(--color-light-text);
+            padding: 20px 5%;
+            font-size: 0.9em;
+            text-align: center;
+            border-top: 2px solid var(--color-primary-neon);
+        }
+        .social-links a {
+            color: var(--color-secondary-neon); 
+            text-decoration: none;
+            margin: 0 15px; 
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 24px; 
+            /* Para que los íconos de FA se vean como botones */
+            display: inline-block; 
+        }
+        .social-links a:hover { 
+            color: var(--color-primary-neon); 
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <p>✨ ENVIOS A TODO MEXICO ✨</p>
+    </div>
+
+    <header class="main-header">
+        
+        <div class="header-icons">
+            <a href="nosotros.html">
+                <img src="nosotros.png" alt="Nosotros">
+            </a>
+        </div>
+        
+        <a href="inicio.html" class="logo-principal">
+            <img src="drako.png" alt="Inicio Drako Studio">
+        </a>
+        
+        <div class="header-icons">
+            <a href="catalogo.html">
+                <img src="catalogo.png" alt="Catálogo">
+            </a>
+            <a href="personalizado.html">
+                <img src="personalizado.png" alt="Personalizados">
+            </a>
+            <a href="carrito.html">
+                <img src="carrito.png" alt="Carrito">
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section class="hero-section">
+            
+            <div class="hero-carousel" aria-hidden="true">
+                <div class="hero-track">
+                    <div class="hero-slide"><img src="bg_hero_1.jpg" alt="Imagen 1 de fondo"></div>
+                    <div class="hero-slide"><img src="drako.png" alt="Imagen 2 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_3.jpg" alt="Imagen 3 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_4.jpg" alt="Imagen 4 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_5.jpg" alt="Imagen 5 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_6.jpg" alt="Imagen 6 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_7.jpg" alt="Imagen 7 de fondo"></div>
+                    <div class="hero-slide"><img src="bg_hero_1.jpg" alt="Imagen 1 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_2.jpg" alt="Imagen 2 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_3.jpg" alt="Imagen 3 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_4.jpg" alt="Imagen 4 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_5.jpg" alt="Imagen 5 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_6.jpg" alt="Imagen 6 de fondo - copia"></div>
+                    <div class="hero-slide"><img src="bg_hero_7.jpg" alt="Imagen 7 de fondo - copia"></div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1>DRAKO STUDIO</h1>
+                <p class="slogan">Impresion a la Perfección.</p>
+                <p class="subtext">Desde figuras de colección hasta llaveros. Dale vida a tus diseños con la tecnología 3D más avanzada y un estilo futurista.</p>
+                
+                <button onclick="generarMensajeWhatsApp(event)" class="cta-button">
+                    SOLICITAR COTIZACIÓN (Vía WhatsApp)
+                </button>
+            </div>
+        </section>
+
+        <section id="productos" class="featured-products">
+            <h2> Nuestros Favoritos De La Temporada </h2>
+            
+            <div class="product-container">
+                
+                <div class="carousel-track">
+                
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Dragón Rojo - Colección" data-precio="450.00">
+                        <img src="oferta1.png" alt="Figura de Dragón Rojo" class="product-image"> 
+                        <h3>Figura Colección: Dragón Rojo</h3>
+                        <p class="price">$450 MXN</p>
+                    </div>
+
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Llavero Logo - Personalizado" data-precio="80.00">
+                        <img src="oferta2.png" alt="Llavero con Logo Personalizado" class="product-image">
+                        <h3>Llavero con Logo Personalizado</h3>
+                        <p class="price">$80 MXN</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Robot Serie Ciber" data-precio="599.00">
+                        <img src="oferta3.png" alt="Figura Robot Ciber" class="product-image"> 
+                        <h3>Robot Serie Ciber (Custom)</h3>
+                        <p class="price">$599 MXN</p>
+                    </div>
+
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Soporte Headset Neón" data-precio="220.00">
+                        <img src="oferta4.png" alt="Soporte para Audífonos" class="product-image"> 
+                        <h3>Soporte Neón para Headset</h3>
+                        <p class="price">$220 MXN</p>
+                    </div>
+
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Mini Espada Pixel" data-precio="99.00">
+                        <img src="oferta5.png" alt="Mini Espada Pixel" class="product-image"> 
+                        <h3>Mini Espada Pixel Art</h3>
+                        <p class="price">$99 MXN</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Dragón Rojo - Colección" data-precio="450.00">
+                        <img src="oferta6.png" alt="Figura de Dragón Rojo" class="product-image"> 
+                        <h3>Figura Colección: Dragón Rojo</h3>
+                        <p class="price">$450 MXN</p>
+                    </div>
+
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Llavero Logo - Personalizado" data-precio="80.00">
+                        <img src="oferta7.png" alt="Llavero con Logo Personalizado" class="product-image">
+                        <h3>Llavero con Logo Personalizado</h3>
+                        <p class="price">$80 MXN</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="addItemToCart(this)" data-nombre="Robot Serie Ciber" data-precio="599.00">
+                        <img src="oferta8.png" alt="Figura Robot Ciber" class="product-image"> 
+                        <h3>Robot Serie Ciber (Custom)</h3>
+                        <p class="price">$599 MXN</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </section>
+
+    </main>
+
+    <footer id="Carrito" class="main-footer">
+        <div class="social-links">
+            <a href="https://wa.me/5219213071961" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://facebook.com/DrakoStudio" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/DrakoStudio3d" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        
+    </footer>
+
+    <script>
+        // 1. LÓGICA DE CARRITO (LOCALSTORAGE)
+        let cart = JSON.parse(localStorage.getItem('drakoCart')) || {};
+
+        function addItemToCart(element) {
+            // Usa el elemento (el div product-card) para obtener los datos
+            const name = element.getAttribute('data-nombre');
+            const price = parseFloat(element.getAttribute('data-precio'));
+            
+            if (cart[name]) {
+                cart[name].quantity += 1;
+            } else {
+                cart[name] = { price: price, quantity: 1 };
+            }
+
+            localStorage.setItem('drakoCart', JSON.stringify(cart));
+            alert(`"${name}" añadido al pedido. Cantidad: ${cart[name].quantity}`);
+        }
+
+        // 2. LÓGICA DE COTIZACIÓN INICIAL (CTA PRINCIPAL)
+        function generarMensajeWhatsApp(event) {
+            let mensaje = "¡Hola Drako Studio! Me gustaría solicitar una cotización para un proyecto de impresión 3D. ¿Podrían ayudarme con mi idea?";
+            
+            let mensajeCodificado = encodeURIComponent(mensaje);
+            let urlWhatsApp = `https://wa.me/5219213071961?text=${mensajeCodificado}`;
+
+            window.open(urlWhatsApp, '_blank');
+        }
+    </script>
+</body>
+</html>
