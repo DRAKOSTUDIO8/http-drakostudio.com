@@ -1,0 +1,41 @@
+<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido por WhatsApp</title>
+</head>
+<body>
+    <h2>Detalles del Envío</h2>
+    <form id="orderForm">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" required><br><br>
+        
+        <label for="address">Dirección:</label>
+        <input type="text" id="address" required><br><br>
+        
+        <label for="total">Total a pagar:</label>
+        <input type="text" id="total" required><br><br>
+        
+        <label for="orderNumber">Número de Orden:</label>
+        <input type="text" id="orderNumber" required><br><br>
+        
+        <button type="button" onclick="sendWhatsApp()">Enviar por WhatsApp</button>
+    </form>
+
+    <script>
+        function sendWhatsApp() {
+            let name = document.getElementById("name").value;
+            let address = document.getElementById("address").value;
+            let total = document.getElementById("total").value;
+            let orderNumber = document.getElementById("orderNumber").value;
+            
+            let phone = "+529211354623"; // Reemplaza con tu número de WhatsApp
+            let message = `Hola, quiero confirmar mi pedido:\n\nNombre: ${name}\nDirección: ${address}\nTotal a pagar: $${total}\nNúmero de orden: ${orderNumber}`;
+            
+            let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>

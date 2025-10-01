@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAKO STUDIO | Catálogo de Productos Neón</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Lobster&display=swap" rel="stylesheet">
+    
+    <style>
+        /* *******************************************
+         * ESTILO DRAKO STUDIO / DARK & NEON
+         * *****************************************
+         */
+
+        :root {
+            --color-primary-neon: #191CB0;    /* Azul Eléctrico */
+            --color-secondary-neon: #00FFC2;  /* Verde Aqua Neón */
+            --color-dark-bg: #1A1A1A;        /* Fondo muy Oscuro */
+            --color-card-bg: #2A2A2A;        /* Fondo de tarjetas */
+            --color-light-text: #F7F7F7;     /* Texto claro */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--color-dark-bg);
+            color: var(--color-light-text);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* --- Navegación (Header) --- */
+        .main-header {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--color-dark-bg);
+            border-bottom: 2px solid var(--color-primary-neon); 
+        }
+        .main-header nav a {
+            color: var(--color-light-text);
+            text-decoration: none;
+            margin: 0 25px;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1em;
+        }
+        .main-header nav a:hover { 
+            color: var(--color-secondary-neon);
+            text-shadow: 0 0 5px var(--color-secondary-neon);
+        }
+        
+        .container { 
+            padding: 20px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            font-weight: 900;
+            color: var(--color-primary-neon); 
+            text-shadow: 0 0 8px var(--color-primary-neon);
+            margin: 30px 0;
+        }
+
+        /* --- Categorías --- */
+        .category { 
+            margin-top: 50px; 
+            padding: 20px; 
+            background: var(--color-dark-bg); 
+            border: 1px solid #333; 
+            border-radius: 10px; 
+        }
+        .category h2 {
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--color-secondary-neon); 
+            border-bottom: 3px solid var(--color-secondary-neon);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px var(--color-secondary-neon);
+        }
+
+        /* --- Producto (Tarjetas) --- */
+        .product { 
+            background: var(--color-card-bg); 
+            border: 1px solid #333; 
+            padding: 15px; 
+            margin: 15px; 
+            display: inline-block; 
+            width: 250px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: center; 
+        }
+        .product:hover {
+            transform: translateY(-5px); 
+            border-color: var(--color-primary-neon); 
+        }
+        .product img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 200px;
+            object-fit: cover;
+            display: block; 
+            margin: auto auto 10px auto; 
+            border-radius: 8px;
+            border: 2px solid var(--color-dark-bg);
+        }
+        .product p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+        .product strong { 
+            color: var(--color-secondary-neon); 
+            font-weight: 700;
+        }
+        .product .price-text { 
+             color: var(--color-primary-neon);
+             font-weight: 900;
+             font-size: 1.2em;
+             display: block;
+             margin-bottom: 15px;
+        }
+        
+        /* Estilo para el botón de añadir al pedido */
+        .add-to-cart {
+            background: var(--color-secondary-neon);
+            color: var(--color-dark-bg);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 0 5px var(--color-secondary-neon);
+        }
+        .add-to-cart:hover {
+            background: #33ffdb;
+        }
+
+        /* Botón de Checkout/Finalizar Pedido */
+        .checkout-button-catalogue {
+            background: var(--color-primary-neon); 
+            color: var(--color-dark-bg);
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 900;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            margin: 50px 0;
+            box-shadow: 0 0 15px var(--color-primary-neon);
+            display: inline-block; /* Cambiado a inline-block */
+            text-decoration: none; /* Aseguramos que se vea como un botón, no un enlace */
+        }
+        .checkout-button-catalogue:hover {
+            background: #4648c6;
+            transform: scale(1.03);
+            box-shadow: 0 0 20px #4648c6;
+        }
+
+
+        /* --- Sección de Descarga (Botón CTA) --- */
+        .download-section { 
+            margin-top: 60px; 
+            padding: 40px 20px; 
+            background: var(--color-card-bg);
+            border-radius: 15px;
+        }
+        .download-section h2 {
+            color: var(--color-light-text);
+            margin-bottom: 20px;
+        }
+        .download-button { 
+            background: var(--color-secondary-neon);
+            color: var(--color-dark-bg);
+            padding: 15px 35px;
+            text-decoration: none; 
+            border-radius: 30px; 
+            font-size: 1.1em; 
+            font-weight: 900;
+            display: inline-block;
+            transition: background 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--color-secondary-neon);
+        }
+        .download-button:hover { 
+            background: #33ffdb; 
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #33ffdb;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="main-header">
+        <nav>
+            <a href="inicio.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="carrito.html">Carrito</a>
+        </nav>
+    </header>
+    
+    <section class="container">
+        <h1>CATÁLOGO OFICIAL DRAKO STUDIO</h1>
+        
+        <div class="category" id="articulados">
+            <h2>Articulados</h2>
+            
+            <div class="product">
+                <img src="dragon_alas.jpg" alt="Dragon Alas">
+                <h3>Dragon Alas</h3>
+                <span class="price-text">$130.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Dragon Alas Articulado" data-precio="130.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="mantarraya.jpg" alt="Mantarraya">
+                <h3>Mantarraya</h3>
+                <span class="price-text">$65.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Mantarraya" data-precio="65.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="rinoceronte.jpg" alt="Rinoceronte">
+                <h3>Rinoceronte</h3>
+                <span class="price-text">$120.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Rinoceronte" data-precio="120.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="ranitas.jpg" alt="Ranitas">
+                <h3>Ranitas</h3>
+                <span class="price-text">$65.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Ranitas (2)" data-precio="65.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="chimuelobaby.jpg" alt="Chimuelo Baby">
+                <h3>Chimuelo Baby</h3>
+                <span class="price-text">$30.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Chimuelo Baby" data-precio="30.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="tiburon.jpg" alt="Tiburón">
+                <h3>Tiburón</h3>
+                <span class="price-text">$35.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Tiburón" data-precio="35.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="pug.jpg" alt="Pug">
+                <h3>Pug</h3>
+                <span class="price-text">$150.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Pug" data-precio="150.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="foca.jpg" alt="Foca Bebé">
+                <h3>Foca Bebé</h3>
+                <span class="price-text">$75.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Foca Bebé" data-precio="75.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="iguana.jpg" alt="Iguana">
+                <h3>Iguana</h3>
+                <span class="price-text">$45.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Iguana" data-precio="45.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="tortuga.jpg" alt="Tortuga">
+                <h3>Tortuga</h3>
+                <span class="price-text">$25.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Tortuga" data-precio="25.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="dragon001.jpg" alt="Dragon 001">
+                <h3>Dragon Modelo 001</h3>
+                <span class="price-text">$25.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Dragon Modelo 001" data-precio="25.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="luky_soldado.jpg" alt="Luky Soldado">
+                <h3>Luky Soldado</h3>
+                <span class="price-text">$75.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Luky Soldado" data-precio="75.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="luky_ninja.jpg" alt="Luky Ninja Azul">
+                <h3>Luky Ninja Azul</h3>
+                <span class="price-text">$85.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Luky Ninja Azul" data-precio="85.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="gato_zombie.jpg" alt="Gato Zombie">
+                <h3>Gato Zombie</h3>
+                <span class="price-text">$85.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Gato Zombie" data-precio="85.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="elefante.jpg" alt="Elefante">
+                <h3>Elefante</h3>
+                <span class="price-text">$85.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Elefante" data-precio="85.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="tigre.jpg" alt="Tigre">
+                <h3>Tigre</h3>
+                <span class="price-text">$85.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Tigre" data-precio="85.00">Añadir a Pedido</button>
+            </div>
+            
+        </div>
+        
+        <div class="category" id="llaveros">
+            <h2>Llaveros</h2>
+            <div class="product">
+                <img src="cactus_pequeno1.jpg" alt="Cactus Pequeño 1">
+                <h3>Cactus Pequeño (Llavero)</h3>
+                <span class="price-text">$15.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Llavero Cactus Pequeño" data-precio="15.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="leon.jpg" alt="León">
+                <h3>León (Llavero)</h3>
+                <span class="price-text">$35.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Llavero León" data-precio="35.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="ajolote.jpg" alt="Ajolote">
+                <h3>Ajolote (Llavero)</h3>
+                <span class="price-text">$30.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Llavero Ajolote" data-precio="30.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="dragon01.jpg" alt="Dragon 01">
+                <h3>Dragon Modelo 01 (Llavero)</h3>
+                <span class="price-text">$30.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Llavero Dragon 01" data-precio="30.00">Añadir a Pedido</button>
+            </div>
+            
+        </div>
+        
+        <div class="category" id="personalizados">
+            <h2>Personalizados</h2>
+            <div class="product">
+                <img src="arbol_nombres.jpg" alt="Árbol Nombres">
+                <h3>Árbol con Nombres (Custom)</h3>
+                <span class="price-text">$150.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Árbol con Nombres" data-precio="150.00">Añadir a Pedido</button>
+            </div>
+            <div class="product">
+                <img src="ciudad_colores.jpg" alt="Ciudad Colores">
+                <h3>Ciudad de Colores (Custom)</h3>
+                <span class="price-text">$150.00 MXN</span>
+                <button class="add-to-cart" onclick="addItemToCart(this)" data-nombre="Ciudad de Colores" data-precio="150.00">Añadir a Pedido</button>
+            </div>
+            
+        </div>
+        
+        <a href="carrito.html" class="checkout-button-catalogue">
+            🛒 VER Y FINALIZAR PEDIDO
+        </a>
+
+        <div class="download-section">
+            <h2>¿Quieres ver más?</h2>
+            <a href="CATALOGO DRAKO STUDIO 2024.pdf" class="download-button" download>📥 DESCARGAR CATÁLOGO COMPLETO</a>
+        </div>
+    </section>
+    
+    <script>
+        // Usamos localStorage para guardar el carrito del cliente entre páginas/sesiones
+        let cart = JSON.parse(localStorage.getItem('drakoCart')) || {};
+        
+        // Función para añadir productos al carrito (sin cambios en la lógica)
+        function addItemToCart(button) {
+            const name = button.getAttribute('data-nombre');
+            const price = parseFloat(button.getAttribute('data-precio'));
+            
+            // Si el producto ya está en el carrito, incrementa la cantidad
+            if (cart[name]) {
+                cart[name].quantity += 1;
+            } else {
+                // Si no está, lo añade
+                cart[name] = { price: price, quantity: 1 };
+            }
+
+            localStorage.setItem('drakoCart', JSON.stringify(cart));
+            alert(`"${name}" añadido al pedido. Cantidad: ${cart[name].quantity}`);
+        }
+        
+        // La función sendCartToWhatsApp() ha sido eliminada.
+    </script>
+</body>
+</html>
